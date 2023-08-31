@@ -23,7 +23,11 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::post('/compareFile/{id}', [visitorController::class, 'compareFile']);
+Route::post('/createCompetition', [competitionController::class, 'store']);
+Route::get('/ranking/{id}', [visitorController::class, 'ranking']);
 Route::apiResource('visitor', visitorController::class);
+Route::get('/index', [competitionController::class, 'index']);
+Route::get('/show/{id}', [competitionController::class, 'show']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::prefix('v1')->group(function () {
