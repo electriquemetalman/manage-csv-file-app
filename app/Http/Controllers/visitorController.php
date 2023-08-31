@@ -7,6 +7,7 @@ use App\Models\competition;
 use Illuminate\Http\Request;
 use App\Http\Requests\visitorRequest;
 use Illuminate\Support\Facades\Storage;
+use Exception;
 
 class visitorController extends Controller
 {
@@ -51,7 +52,21 @@ class visitorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * get ranking for specific competition.
+     */
+
+    public function ranking($id)
+    {
+        try {
+            $visitors = visitor::where('competition_id', $id)->orderBy('result', 'desc')->get();
+            return response()->json($visitors, 201);
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    /**
+     * compare file and return result into database.
      */
     public function compareFile(visitorRequest $request, $id)
     {
