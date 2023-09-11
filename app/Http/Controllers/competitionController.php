@@ -18,7 +18,7 @@ class competitionController extends Controller
     {
         //
         try {
-            $competitions = Competition::all();
+            $competitions = Competition::orderBy('created_at', 'desc')->get();
             return response()->json($competitions, 200);
         } catch (ModelNotFoundException $exception) {
             return $exception->getMessage();
@@ -45,7 +45,18 @@ class competitionController extends Controller
             'evaluation_text' => $validated['evaluation_text'],
             'ref_file' => $csvFileName
         ]);
-        return response()->json($competition, 201);
+        if ($competition) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Competition Added Succesfully',
+                'data' => $competition,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Somthing Went Wrong',
+            ]);
+        }
     }
 
     /**

@@ -24,7 +24,7 @@ class visitorRequest extends FormRequest
         return [
             //
             'name' => 'required|min:4',
-            'phone_number' => 'required|min:6',
+            'matricule' => 'required|min:4',
             'file' => 'required',
         ];
     }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('competition_id');
             $table->string('name');
-            $table->string('phone_number');
+            $table->string('matricule');
             $table->string('result');
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
             $table->timestamps();

@@ -67,4 +67,22 @@ class AuthController extends Controller
         Auth::user()->tokens()->delete();
         return response(['message' => 'logget out'], 200);
     }
+
+    public function getAuthUser()
+    {
+        $authuser = auth('sanctum')->user();
+        if ($authuser) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'user who are authenticate',
+                'data' => $authuser,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => 'no authenticate users',
+                'data' => $authuser,
+            ]);
+        }
+    }
 }

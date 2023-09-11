@@ -21,9 +21,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
 });
+Route::get('/getAuthUser', [AuthController::class, 'getAuthUser']);
 
 Route::post('/compareFile/{id}', [visitorController::class, 'compareFile']);
-Route::post('/createCompetition', [competitionController::class, 'store']);
+//Route::post('/createCompetition', [competitionController::class, 'store']);
 Route::get('/ranking/{id}', [visitorController::class, 'ranking']);
 Route::apiResource('visitor', visitorController::class);
 Route::get('/index', [competitionController::class, 'index']);
