@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('long_description');
             $table->text('evaluation_text');
             $table->string('ref_file');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

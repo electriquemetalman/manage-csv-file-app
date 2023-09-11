@@ -25,7 +25,7 @@ class competitionRequest extends FormRequest
             //
             'title' => 'required|min:4',
             'litel_description' => 'required|min:10',
-            'long_description' => 'required|min:30',
+            'long_description' => 'required|min:20',
             'evaluation_text' => 'required|min:10',
             'ref_file' => 'required',
         ];

@@ -11,7 +11,7 @@ class visitor extends Model
     protected $fillable = [
         'competition_id',
         'name',
-        'phone_number',
+        'matricule',
         'file',
         'result'
     ];

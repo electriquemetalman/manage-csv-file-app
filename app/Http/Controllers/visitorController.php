@@ -59,6 +59,7 @@ class visitorController extends Controller
     {
         try {
             $visitors = visitor::where('competition_id', $id)->orderBy('result', 'desc')->get();
+            //$visitor_nomber = visitor::count();
             return response()->json($visitors, 201);
         } catch (Exception $exception) {
             return $exception->getMessage();
@@ -157,16 +158,26 @@ class visitorController extends Controller
                 $competition = Visitor::create([
                     'competition_id' => $id,
                     'name' => $validated['name'],
-                    'phone_number' => $validated['phone_number'],
+                    'matricule' => $validated['matricule'],
                     'result' => $final_result
                 ]);
 
-                return response()->json($competition, 201);
+                return response()->json([
+                    'status' => 201,
+                    'message' => 'Your File Added Succesfully',
+                    'data' => $competition,
+                ]);
             } else {
-                return "votre fichier est incorrect";
+                return response()->json([
+                    'status' => 500,
+                    'message' => 'Somthing Went Wrong: your File is incorrect',
+                ]);
             }
         } else {
-            return "verifier l'entete de votre fichier est incorrect";
+            return response()->json([
+                'status' => 500,
+                'message' => 'Somthing Went Wrong: your File is incorrect',
+            ]);
         }
 
         //dd($csv);
